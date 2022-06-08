@@ -7,13 +7,13 @@ class QuestionService{
         const valueAnswerRound = Math.round(valueAnswer*1000)
         const valueOriginMin = Math.round(valueOrigin*1000) - 0.5
         const valueOriginMax = Math.round(valueOrigin*1000 )+ 0.5
-        console.log(valueOriginMin, valueOriginMax)
-        console.log(valueAnswerRound)
+        // console.log(valueOriginMin, valueOriginMax)
+        // console.log(valueAnswerRound)
         return valueOriginMin <= valueAnswerRound && valueAnswerRound <= valueOriginMax
     }
 
     async checkAnswerGeo(userId, quizId, answer){
-        console.log(answer)
+        // console.log(answer)
         try{
             const quiz = await quizService.getQuizById(quizId)
             const progress = await progressService.getProgressByUserId(userId)

@@ -3,9 +3,14 @@ const userRouter = require('./routers/userRouters')
 const quizRouter = require('./routers/quizRouter')
 const questionRouter = require('./routers/questionRouter')
 const uploadRouter = require('./routers/uploadRouter')
+const botController = require('./controllers/botController')
 const mongoose = require('mongoose')
 const fs = require('fs');
+const TelegramBot = require('node-telegram-bot-api')
 
+
+const token = '5385069715:AAEeCrF6FcMSEbEY6pKBEtCxljBTjlGmcrg'
+const bot = new TelegramBot(token, {polling: true});
 
 const https = require('https');
 const cors = require('cors')
@@ -37,6 +42,9 @@ const start = async ()=>{
     try {
         await mongoose.connect(process.env.DB_URL)
         https.createServer(options, app).listen(8448);
+        botController.start(bot)
+
+
         app.listen(PORT,()=>{
             console.log(`start on port ${PORT}`)
         })
