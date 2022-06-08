@@ -5,8 +5,8 @@ class QuestionService{
 
     checkRoundCoordinate(valueAnswer, valueOrigin){
         const valueAnswerRound = Math.round(valueAnswer*1000)
-        const valueOriginMin = Math.round(valueOrigin*1000 - 2)
-        const valueOriginMax = Math.round(valueOrigin*1000 + 2)
+        const valueOriginMin = Math.round(valueOrigin*1000 - 1)
+        const valueOriginMax = Math.round(valueOrigin*1000 + 1)
         console.log(valueOriginMin, valueOriginMax)
         console.log(valueAnswerRound)
         return valueOriginMin <= valueAnswerRound && valueAnswerRound <= valueOriginMax
