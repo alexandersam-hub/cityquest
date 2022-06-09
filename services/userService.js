@@ -68,7 +68,7 @@ class userService{
             if(!usersBd)
                 return {warning:true, message:'Пользователь с таким id не существует'}
             const newUser = new UserDto(usersBd)
-            const newPassword = getRandomInt(100001,999999)
+            const newPassword = getRandomInt(100001,999999).toString()
             await this.updatePassword(newUser.id, newPassword)
             return {warning:false, user:newUser, password:newPassword, role:newUser.role, token:tokenService.generationToken({...newUser})}
         }catch (e) {
