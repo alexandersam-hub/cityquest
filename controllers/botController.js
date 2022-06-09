@@ -12,7 +12,7 @@ class BotController{
             if(user.warning)
                 user = await telegramService.createUserByTelegramId(chatId)
             // отправляем сообщение
-            await bot.sendMessage(chatId, 'Привет, Друг! Давай сыграем?', { // прикрутим клаву
+            await bot.sendMessage(chatId, 'Привет! Начнем игру?', { // прикрутим клаву
                 reply_markup: {
                     inline_keyboard:  [
                         [

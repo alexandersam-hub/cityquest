@@ -3,6 +3,7 @@ const userRouter = require('./routers/userRouters')
 const quizRouter = require('./routers/quizRouter')
 const questionRouter = require('./routers/questionRouter')
 const uploadRouter = require('./routers/uploadRouter')
+const supportRouter = require('./routers/supportRouter')
 const botController = require('./controllers/botController')
 const mongoose = require('mongoose')
 const fs = require('fs');
@@ -37,6 +38,7 @@ app.use('/api/user',userRouter)
 app.use('/api/question',questionRouter)
 app.use('/api/quiz',quizRouter)
 app.use('/api/upload',uploadRouter)
+app.use('/api/support',supportRouter)
 
 const start = async ()=>{
     try {
