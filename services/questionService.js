@@ -4,9 +4,9 @@ const quizService = require('./quizService')
 class QuestionService{
 
     checkRoundCoordinate(valueAnswer, valueOrigin){
-        const valueAnswerRound = Math.round(valueAnswer*1000)
-        const valueOriginMin = Math.round(valueOrigin*1000) - 0.5
-        const valueOriginMax = Math.round(valueOrigin*1000 )+ 0.5
+        const valueAnswerRound = Math.round(valueAnswer*100000)
+        const valueOriginMin = Math.round(valueOrigin*100000) - 30
+        const valueOriginMax = Math.round(valueOrigin*100000)+ 30
         // console.log(valueOriginMin, valueOriginMax)
         // console.log(valueAnswerRound)
         return valueOriginMin <= valueAnswerRound && valueAnswerRound <= valueOriginMax
