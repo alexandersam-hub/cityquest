@@ -18,7 +18,7 @@ class BotController{
                         [
                             {
                                 text: 'Хочу играть', // текст на кнопке
-                                url : `https://квест71.родныеигры.рф/login/${user.user.telegramId}/${user.password}`
+                                url : `https://xn--71-dlcmx8bh.xn--c1abdmxeng9ge.xn--p1ai/login/${user.user.telegramId}/${user.password}`
                             }
                         ]
                     ]
