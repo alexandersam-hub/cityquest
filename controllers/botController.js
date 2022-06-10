@@ -4,13 +4,14 @@ class BotController{
 
     async start(bot){
 
-
-
         bot.on('message', async (msg) => {
             const chatId = msg.chat.id; //получаем идентификатор диалога, чтобы отвечать именно тому пользователю, который нам что-то прислал
             let user = await telegramService.getUserByTelegramId(chatId)
-            if(user.warning)
-                user = await telegramService.createUserByTelegramId(chatId)
+            if(user.warning){
+                const username = `${msg.chat.first_name} ${msg.chat.last_name} (${msg.chat.username})`
+                user = await telegramService.createUserByTelegramId(chatId,username)
+            }
+
             // отправляем сообщение
             await bot.sendMessage(chatId, 'Привет! Начнем игру?', { // прикрутим клаву
                 reply_markup: {
