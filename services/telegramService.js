@@ -4,9 +4,9 @@ const randomNumber = require('./randomNumber')
 
 class TelegramService{
 
-    async createUserByTelegramId(telegramId){
+    async createUserByTelegramId(telegramId,username){
         const password = randomNumber(100001,999999).toString()
-        const newUser = new UserDto({username:telegramId, telegramId, password, role:'user', isActive:true, tokenWhereFrom:'telegramUser'})
+        const newUser = new UserDto({username:telegramId, telegramId, password, description:username, role:'user', isActive:true, tokenWhereFrom:'telegramUser'})
         const userCreated = await userService.registration(newUser)
         userCreated.password = password
         return userCreated
