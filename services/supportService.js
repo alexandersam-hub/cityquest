@@ -35,24 +35,15 @@ class SupportService{
             const posts = await SupportModel.find()
             const postsDto = []
 
-            for (const post of posts) {
-                let userData
-                console.log(post)
-                    if(post.userId === 'noname')
-                        userData = {user:{username:'Пользователь еще не авторизован', description:'-'}}
-                        else
-                        userData = await authService.getUserById(post.userId)
-                if (userData.warning){
-                    userData = {user:{username:'Пользователь еще не авторизован', description:'-'}}
-                }
-                    postsDto.push({...new SupportDto(post), userLogin:userData.user.username, organisation: userData.user.description})
-            }
+            posts.forEach(post=>{
+                postsDto.push(new SupportDto(post))
+            })
 
             return {warning:false, posts:postsDto}
         }
         catch (e) {
             console.log(e)
-            return {warning:true, message:'Ошибка изменения поля в БД'}
+            return {warning:true, message:'Ошибка выгрузки'}
         }
     }
 
