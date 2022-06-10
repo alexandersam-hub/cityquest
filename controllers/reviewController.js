@@ -5,7 +5,7 @@ class ReviewController{
 
     async getReviews(req,res){
         try{
-            const result = reviewService.getReviews()
+            const result = await reviewService.getReviews()
             return res.json(result)
         }catch (e) {
             return res.json({warning:true, message:'Ошибка сервера'})
@@ -16,7 +16,7 @@ class ReviewController{
         try{
             const {token, text, count} = req.body
             const user = tokenService.validationToken(token)
-            const result = reviewService.addReview(user.id, text,count)
+            const result = await reviewService.addReview(user.id, text,count)
             return res.json(result)
         }catch (e) {
             return res.json({warning:true, message:'Ошибка сервера'})
