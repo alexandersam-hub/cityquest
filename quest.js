@@ -5,6 +5,7 @@ const questionRouter = require('./routers/questionRouter')
 const uploadRouter = require('./routers/uploadRouter')
 const supportRouter = require('./routers/supportRouter')
 const botController = require('./controllers/botController')
+const reviewsRouter = require('./routers/reviewsRouter')
 const mongoose = require('mongoose')
 const fs = require('fs');
 const TelegramBot = require('node-telegram-bot-api')
@@ -39,6 +40,7 @@ app.use('/api/question',questionRouter)
 app.use('/api/quiz',quizRouter)
 app.use('/api/upload',uploadRouter)
 app.use('/api/support',supportRouter)
+app.use('/api/review',reviewsRouter)
 
 const start = async ()=>{
     try {
