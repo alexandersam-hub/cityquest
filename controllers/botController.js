@@ -18,7 +18,7 @@ class BotController{
                         [
                             {
                                 text: 'Хочу играть', // текст на кнопке
-                                url : `https://quizserver.vityazgroup.ru/login/${user.user.telegramId}/${user.password}`
+                                url : `https://квест71.родныеигры.рф/login/${user.user.telegramId}/${user.password}`
                             }
                         ]
                     ]
