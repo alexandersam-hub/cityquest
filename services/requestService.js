@@ -17,6 +17,7 @@ class RequestService{
                 return !json.warning;
             })
         }catch (e) {
+            console.log(e)
             return false
         }
     }
