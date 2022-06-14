@@ -6,6 +6,7 @@ const QuizSchema = new Schema({
     tasks:{type:[Object]},
     category:{type:String},
     img:{type:String},
+    prefix:{type:String},
     isActive:{type:Boolean, required:true},
 
 })

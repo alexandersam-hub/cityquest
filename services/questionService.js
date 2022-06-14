@@ -1,6 +1,7 @@
 const progressService = require('./progressService')
 const quizService = require('./quizService')
-
+const PromoCodeModel = require('../models/PromoCodeModel')
+const requestService = require('./requestService')
 class QuestionService{
 
     checkRoundCoordinate(valueAnswer, valueOrigin){
@@ -27,15 +28,20 @@ class QuestionService{
                             progress.currentTaskNumber.find(t=>t.quiz === quizId).taskNumber = currentTaskNumber+1
                         if(currentTaskNumber===quiz.quiz.tasks.length-1){
                             progress.isFinished.push(quiz.quiz.id)
+                            progress.dateFinish.push({quiz:quiz.quiz.id, date:new Date()})
+                            await this.finishUser(quiz.quiz.id)
                         }
                     }else{
-
+                        progress.dateStart.push({quiz:quiz.quiz.id, date:new Date()})
                         progress.currentTaskNumber.push({quiz:quizId,taskNumber: currentTaskNumber+1})
                     }
                     progress.position.push(answer)
                     await progressService.updateProgress(progress)
                     return {warning:false, answer:true, progress:progress}
                 }else{
+                    if(!currentProgress){
+                        progress.dateStart.push({quiz:quiz.quiz.id, date:new Date()})
+                    }
                     progress.position.push(answer)
                     await progressService.updateProgress(progress)
                     return {warning:false, answer:false}
@@ -47,6 +53,35 @@ class QuestionService{
         }
 
 
+    }
+
+    async finishUser(quizId){
+        try{
+            const promo = await PromoCodeModel.findOne({quiz:quizId})
+            let code
+            if(promo){
+                promo.currentNumber++
+                if(promo.currentNumber<10){
+                   code = '0000'+promo.currentNumber
+               }else if(promo.currentNumber<100){
+                   code = '000'+promo.currentNumber
+               }else if(promo.currentNumber<1000){
+                   code = '00'+promo.currentNumber
+               }else{
+                   code = promo.currentNumber.toString()
+               }
+               await promo.save()
+            }
+            else {
+                await PromoCodeModel.create({quiz:quizId, currentNumber:1})
+                code = '00001'
+            }
+
+            const res = await requestService.pullPromoToQuizServer(code, quizId)
+            return res
+        }catch (e) {
+            return false
+        }
     }
 }
 

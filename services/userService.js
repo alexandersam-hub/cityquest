@@ -1,4 +1,4 @@
-const UserModel = require('../models/UserModel')
+    const UserModel = require('../models/UserModel')
 const UserDto = require('../dtos/UserDto')
 const bcrypt = require('bcrypt')
 const tokenService = require('./tokenService')
