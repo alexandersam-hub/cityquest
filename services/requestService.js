@@ -1,11 +1,13 @@
-const nodeFetch = require('node-fetch')
+const request= require('request')
 
 class RequestService{
 
     async pullPromoToQuizServer(code, userData){
         try{
-            nodeFetch(process.env.URL_QUIZ_SERVER+'/api/promo/pull',{
+            request({
+                url:process.env.URL_QUIZ_SERVER+'/api/promo/pull',
                 method:'POST',
+                json: true,
                 body:{
                     code,
                     user_data:JSON.stringify(userData)
