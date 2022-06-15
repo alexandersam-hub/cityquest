@@ -1,5 +1,5 @@
 const WebSocket = require('ws');
-    const client = new WebSocket('ws://localhost:8100');
+    const client = new WebSocket('ws://127.0.0.1:8100');
 client.onopen = function () {
     console.log('подключился');
 };
