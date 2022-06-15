@@ -8,7 +8,9 @@ class RequestService{
 
     async pullPromoToQuizServer(code, userData){
         try{
+            console.log('send',code, userData)
             client.send(JSON.stringify({action: 'promoQuest', data: {code, userData}}));
+            return true
         }catch (e) {
             console.log(e)
             return false
