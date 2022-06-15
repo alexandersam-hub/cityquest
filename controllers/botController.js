@@ -19,7 +19,11 @@ class BotController{
                         [
                             {
                                 text: 'Хочу играть', // текст на кнопке
-                                url : `https://xn--71-dlcmx8bh.xn--c1abdmxeng9ge.xn--p1ai/login/${user.user.telegramId}/${user.password}`
+                                "callback_data": "Подписаться"
+                            },
+                            {
+                                text: 'Хочу играть', // текст на кнопке
+                                "callback_data": "Подписаться"
                             }
                         ]
                     ]

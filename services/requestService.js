@@ -1,20 +1,14 @@
-const messenger= require('messenger')
-const client = messenger.createSpeaker(8100);
+const WebSocket = require('ws');
+    const client = new WebSocket('ws://localhost:8100');
+client.onopen = function () {
+    console.log('подключился');
+};
 
 class RequestService{
 
     async pullPromoToQuizServer(code, userData){
         try{
-            client.request('give promo', {code, userData}, data=>{
-                if(!data.warning)
-                    return true
-                else{
-                    setTimeout(
-                        ()=>this.pullPromoToQuizServer(), 1000
-                    )
-
-                }
-            })
+            client.send(JSON.stringify({action: 'promoQuest', data: {code, userData}}));
         }catch (e) {
             console.log(e)
             return false
