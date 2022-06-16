@@ -2,6 +2,8 @@ const progressService = require('./progressService')
 const quizService = require('./quizService')
 const PromoCodeModel = require('../models/PromoCodeModel')
 const requestService = require('./requestService')
+const userPromoCodeService = require('./userPromoCodeService')
+
 class QuestionService{
 
     checkRoundCoordinate(valueAnswer, valueOrigin){
@@ -29,7 +31,7 @@ class QuestionService{
                         if(currentTaskNumber===quiz.quiz.tasks.length-1){
                             progress.isFinished.push(quiz.quiz.id)
                             progress.dateFinish.push({quiz:quiz.quiz.id, date:new Date()})
-                            await this.finishUser(quiz.quiz.id)
+                            await this.finishUser(quiz.quiz.id,userId)
                         }
                     }else{
                         progress.dateStart.push({quiz:quiz.quiz.id, date:new Date()})
@@ -55,7 +57,7 @@ class QuestionService{
 
     }
 
-    async finishUser(quizId){
+    async finishUser(quizId, userId){
         try{
             const promo = await PromoCodeModel.findOne({quiz:quizId})
             let code
@@ -76,9 +78,8 @@ class QuestionService{
                 await PromoCodeModel.create({quiz:quizId, currentNumber:1})
                 code = '00001'
             }
-
-            const res = await requestService.pullPromoToQuizServer(code, quizId)
-            return res
+            await userPromoCodeService.addUserPromoCode(quizId, userId, code)
+            return await requestService.pullPromoToQuizServer(code, quizId)
         }catch (e) {
             return false
         }
