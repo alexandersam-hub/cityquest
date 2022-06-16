@@ -1,7 +1,7 @@
 const {Schema, model} = require('mongoose')
 
 const userPromoCodeModel= new Schema({
-    user:{type:String, required:true},
+    user:{type:String},
     quiz:{type:String},
     code:{type:String}
 })

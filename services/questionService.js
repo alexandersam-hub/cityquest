@@ -31,7 +31,7 @@ class QuestionService{
                         if(currentTaskNumber===quiz.quiz.tasks.length-1){
                             progress.isFinished.push(quiz.quiz.id)
                             progress.dateFinish.push({quiz:quiz.quiz.id, date:new Date()})
-                            await this.finishUser(quiz.quiz.id,userId)
+                            await this.finishUser(quiz.quiz.id, userId)
                         }
                     }else{
                         progress.dateStart.push({quiz:quiz.quiz.id, date:new Date()})
@@ -78,6 +78,7 @@ class QuestionService{
                 await PromoCodeModel.create({quiz:quizId, currentNumber:1})
                 code = '00001'
             }
+            console.log(quizId, userId, code)
             const promoUser = await userPromoCodeService.addUserPromoCode(quizId, userId, code)
             console.log(promoUser)
             return await requestService.pullPromoToQuizServer(code, quizId)
