@@ -4,8 +4,8 @@ class UserPromoCodeService{
 
     async addUserPromoCode(quiz, user, code){
         try{
-            const user = await UserPromoCodeModel.findOne({quiz, user})
-            if(user){
+            const userBd = await UserPromoCodeModel.findOne({quiz, user})
+            if(userBd){
                 return {warning:true, message:'Промокод для данной игры и данного пользователя уже существует'}
             }else{
                 await UserPromoCodeModel.create({quiz, user, code})
