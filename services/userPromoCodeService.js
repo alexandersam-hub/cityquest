@@ -27,7 +27,7 @@ class UserPromoCodeService{
                 return  {warning:false, code:userBd.code}
             }
         }catch (e) {
-            return false
+            return {warning:true, message:'Ошибка при вышрузке кодов. '+e}
         }
     }
 }
