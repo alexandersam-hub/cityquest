@@ -80,7 +80,6 @@ class QuestionService{
             }
 
             const promoUser = await userPromoCodeService.addUserPromoCode(quizId, userId, code)
-            console.log(promoUser)
             return await requestService.pullPromoToQuizServer(code, quizId)
         }catch (e) {
             return false
