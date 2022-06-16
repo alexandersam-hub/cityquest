@@ -7,7 +7,6 @@ class PromoCodeUserController {
             const {token, quiz} = req.body
 
             const user = tokenService.validationToken(token)
-            console.log(token, quiz,user)
             const result = userPromoCodeService.getCodeByUserId(quiz, user.id)
             return res.json({warning:false, code:result})
         }catch (e) {
