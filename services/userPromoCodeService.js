@@ -18,7 +18,7 @@ class UserPromoCodeService{
 
     async getCodeByUserId(quiz, user){
         try{
-            const user = await UserPromoCodeModel.findOne({user})
+            const user = await UserPromoCodeModel.findOne({quiz, user})
             if(!user){
                 return {warning:true, message:'Промокод для данной игры не существует'}
             }else{

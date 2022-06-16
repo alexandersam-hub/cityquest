@@ -78,7 +78,8 @@ class QuestionService{
                 await PromoCodeModel.create({quiz:quizId, currentNumber:1})
                 code = '00001'
             }
-            await userPromoCodeService.addUserPromoCode(quizId, userId, code)
+            const promoUser = await userPromoCodeService.addUserPromoCode(quizId, userId, code)
+            console.log(promoUser)
             return await requestService.pullPromoToQuizServer(code, quizId)
         }catch (e) {
             return false
