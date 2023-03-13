@@ -19,8 +19,8 @@ const https = require('https');
 const cors = require('cors')
 
 const options = {
-    cert: fs.readFileSync('./sslcert/fullchain.pem'),
-    key: fs.readFileSync('./sslcert/privkey.pem')
+    cert: fs.readFileSync('../sslcert/fullchain.pem'),
+    key: fs.readFileSync('../sslcert/privkey.pem')
 };
 
 require('dotenv').config()
