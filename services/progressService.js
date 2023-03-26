@@ -34,7 +34,7 @@ class ProgressService {
 
     async removeProgress(user){
         try{
-            await ProgressModel.findByIdAndDelete({user})
+            await ProgressModel.findOneAndDelete({user})
             return {warning:false, message:'Прогресс удален'}
         } catch (e) {
             return {warning:true, message:'Не удалось удалить текущий прогресс '+e}

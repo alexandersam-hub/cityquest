@@ -9,6 +9,7 @@ const reviewsRouter = require('./routers/reviewsRouter')
 const promoCodeUserRouter = require('./routers/promoCodeUserRouter')
 const mongoose = require('mongoose')
 const fs = require('fs');
+
 process.env.NTBA_FIX_319 = 1
 const TelegramBot = require('node-telegram-bot-api')
 
