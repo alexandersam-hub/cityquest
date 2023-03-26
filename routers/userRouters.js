@@ -19,4 +19,6 @@ router.post('/check_email',userController.checkUserEmail)
 
 router.post('/get_user_id',userController.getUserIdByToken)
 
+router.post('/remove_progress',userController.removeProgress)
+
 module.exports = router

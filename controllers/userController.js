@@ -1,5 +1,6 @@
 const userService = require('../services/userService')
 const tokenService = require('../services/tokenService')
+const progressService = require("../services/progressService");
 
 
 const warningServer = {warning:true, message:'Ошибка сервера'}
@@ -147,6 +148,19 @@ class UserController{
             }else
                 return res.json({warning:true, message:'Поле token не заполнено'})
         }catch (e) {
+            return res.json(warningServer)
+        }
+    }
+    async removeProgress(req,res){
+        try{
+            const {token} = req.body
+            if(token){
+                const result = await tokenService.validationToken(token)
+                await progressService.removeProgress(result.id)
+                return res.json({warning:false, userId:result.id})
+            }else
+                return res.json({warning:true, message:'Поле token не заполнено'})
+        }catch (e){
             return res.json(warningServer)
         }
     }
